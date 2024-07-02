@@ -1,6 +1,9 @@
 services:
   - type: web
-    name: django-app
+    name: django-customsignals
     env: python
-    buildCommand: "pip install -r requirements.txt && python manage.py migrate"
-    startCommand: "gunicorn customsignal.wsgi"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn customsignal.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: customsignal.settings
